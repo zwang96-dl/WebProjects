@@ -11,6 +11,7 @@
     import vClientTable from 'vue-tables';
     import moment from 'moment';
     import {clientShippingStatus} from '../vuex/actions';
+    import {clientShippingFinishStatus} from '../vuex/actions';
     export default {
 
         components: {
@@ -20,14 +21,14 @@
 
         vuex: {
             getters: {
-                tableData: state => state.clientShippingPendingTable
+                tableData: state => state.clientShippingFinishTable
             },
             actions: {
-                clientShippingStatus
+                clientShippingFinishStatus
             }
         },
     created() {
-        this.clientShippingStatus()
+        this.clientShippingFinishStatus()
     },
 
         data() {

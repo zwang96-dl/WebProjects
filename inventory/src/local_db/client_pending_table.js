@@ -112,7 +112,7 @@ let client_pending_table = [
         "Urine": 0,
         "address": "",
         "big_box": 1,
-        "client_id": 1500,
+        "client_id": 1501,
         "client_practice_name": "Arizona Digestive Health",
         "comments": "test",
         "index": 13,

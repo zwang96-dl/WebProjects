@@ -9,7 +9,8 @@ const state = {
     clientNames: [],
     physicianNames: [],
     selectedClient: undefined,
-    clientShippingPendingTable: []
+    clientShippingPendingTable: [],
+    clientShippingFinishTable: []
 }
 
 const mutations = {
@@ -17,6 +18,11 @@ const mutations = {
         // console.log("1state: ", state);
         // console.log("1table: ", table);
         state.clientShippingPendingTable = table;
+    },
+    CLIENTSHIPPINGFINISHSTATUS (state, table) {
+        // console.log("1state: ", state);
+        // console.log("1table: ", table);
+        state.clientShippingFinishTable = table;
     },
     CLIENTSTATUS (state, table) {
         // console.log("state: ", state);
