@@ -1,13 +1,24 @@
 <template>
-    <div id="shipping_pending_table">
-    <h2>Shipping Pending</h2>
-      <v-client-table :data="tableData" :columns="columns" :options="options"></v-client-table>
-    </div>
+    <div id="shipping_pending_table" class='container'>
+    <tabset>
+        <tab header="Pending">
+            <div>
+                <h2>Pending Orders</h2>
+                    <v-client-table :data="pending_table_data" :columns="pending_table_columns" :options="pending_table_options"></v-client-table>
+            </div>
+        </tab>
+        <tab header="Finish">
+            <div>
+                <h2>Completed Orders</h2>
+                    <v-client-table :data="completed_table_data" :columns="completed_table_columns" :options="completed_table_options"></v-client-table>
+            </div>
+        </tab>
+    </tabset>
 </template>
 
 <script>
 
-    import {alert} from 'vue-strap';
+    import {alert, tabset, tab} from 'vue-strap';
     import vClientTable from 'vue-tables';
     import moment from 'moment';
     import {clientShippingStatus} from '../vuex/actions';
@@ -16,41 +27,43 @@
 
         components: {
             alert,
-            vClientTable
+            vClientTable,
+            tabset,
+            tab
         },
 
         vuex: {
             getters: {
-                tableData: state => state.clientShippingFinishTable
+                pending_table_data: state => state.clientShippingPendingTable,
+                completed_table_data: state => state.clientShippingFinishTable
             },
             actions: {
+                clientShippingStatus,
                 clientShippingFinishStatus
             }
         },
     created() {
+        this.clientShippingStatus(),
         this.clientShippingFinishStatus()
     },
 
         data() {
             return {
-                columns: ['client_practice_name', 'client_id', 'time', 'req', 'shipping_method', 'processed_time', 'processed_by', 'comments'],
-                options: {
-                    // dateColumns: ['birth_date'],
+                pending_table_columns: ['client_practice_name', 'client_id', 'time', 'req', 'shipping_method', 'comments'],
+                completed_table_columns: ['client_practice_name', 'client_id', 'time', 'req', 'shipping_method', 'processed_time', 'processed_by', 'comments'],
+                pending_table_options: {
                     headings: {
                         client_practice_name: 'Client Name',
                         client_id: 'Client ID',
                     },
                     filterable: ['client_practice_name', 'client_id']
-                    // customFilters: [{
-                    //         name: 'alphabet',
-                    //         callback: function(row, query) {
-                    //             return row.client_name[0] == query;
-                    //         }
-                    //     }]
-                        //  orderBy: {
-                        //        column:'age',
-                        //        ascending:false
-                        //    }
+                },
+                pending_table_options: {
+                    headings: {
+                        client_practice_name: 'Client Name',
+                        client_id: 'Client ID',
+                    },
+                    filterable: ['client_practice_name', 'client_id']
                 }
             }
         }
