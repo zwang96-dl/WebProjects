@@ -46,10 +46,10 @@ Object.keys(proxyTable).forEach(function (context) {
   }
   app.use(proxyMiddleware(context, options))
 })
-app.use(proxyMiddleware('/client_inventory', {target: 'http://localhost:5000'}))
-app.use(proxyMiddleware('/client_info_typeahead', {target: 'http://localhost:5000'}))
-app.use(proxyMiddleware('/client_order', {target: 'http://localhost:5000'}))
-app.use(proxyMiddleware('/client-shipping-pending-table/', {target: 'http://localhost:5000'}))
+app.use(proxyMiddleware('/client_inventory', {target: 'http://192.168.10.121:5000'}))
+app.use(proxyMiddleware('/client_info_typeahead', {target: 'http://192.168.10.121:5000'}))
+app.use(proxyMiddleware('/client_order', {target: 'http://192.168.10.121:5000'}))
+app.use(proxyMiddleware('/client-shipping-pending-table/', {target: 'http://192.168.10.121:5000'}))
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 

@@ -1,5 +1,7 @@
 import Vue from 'vue'
-
+import client_pending_table from '..../local_db/client_pending_table'
+// import client_pending_table as a from '..../local_db/client_pending_table'
+// console.log(client_pending_table);
 export const clientInvStatus = ({dispatch}, client_id) => {
   Vue.http.get(`/client_inventory/${client_id}`).then(
     (res) => {
@@ -13,15 +15,16 @@ export const clientInvStatus = ({dispatch}, client_id) => {
 };
 
 export const clientShippingStatus = ({dispatch}) => {
-  Vue.http.get("/client-shipping-pending-table/").then(
-    (res) => {
-      let table = res.json();
-      dispatch('CLIENTSHIPPINGSTATUS', table);
-    },
-    (err) => {
-      console.log("this is a err", err);
-    }
-  )
+  dispatch("CLIENTSHIPPINGSTATUS", client_pending_table);
+  // Vue.http.get("/client-shipping-pending-table/").then(
+  //   (res) => {
+  //     let table = res.json();
+  //     dispatch('CLIENTSHIPPINGSTATUS', table);
+  //   },
+  //   (err) => {
+  //     console.log("this is a err", err);
+  //   }
+  // )
 }
 
 
