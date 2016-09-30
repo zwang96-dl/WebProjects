@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import client_pending_table from '..../local_db/client_pending_table'
+import client_pending_table from '../local_db/client_pending_table'
 // import client_pending_table as a from '..../local_db/client_pending_table'
 // console.log(client_pending_table);
 export const clientInvStatus = ({dispatch}, client_id) => {
@@ -15,7 +15,7 @@ export const clientInvStatus = ({dispatch}, client_id) => {
 };
 
 export const clientShippingStatus = ({dispatch}) => {
-  dispatch("CLIENTSHIPPINGSTATUS", client_pending_table);
+  dispatch("CLIENTSHIPPINGSTATUS", client_pending_table)
   // Vue.http.get("/client-shipping-pending-table/").then(
   //   (res) => {
   //     let table = res.json();
@@ -45,7 +45,7 @@ export const typeaheadClientInfo = ({dispatch}) => {
 export const searchClient = ({dispatch}, client_id) => {
   return Vue.http.get(`/client_inventory/${client_id}`).then(
     (res) => {
-      console.log("haha res is: ", res);
+      // console.log("haha res is: ", res);
       return res.json();
     },
     (err) => {

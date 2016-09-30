@@ -14,13 +14,13 @@ const state = {
 
 const mutations = {
     CLIENTSHIPPINGSTATUS (state, table) {
-        console.log("1state: ", state);
-        console.log("1table: ", table);
+        // console.log("1state: ", state);
+        // console.log("1table: ", table);
         state.clientShippingPendingTable = table;
     },
     CLIENTSTATUS (state, table) {
-        console.log("state: ", state);
-        console.log("table: ", table);
+        // console.log("state: ", state);
+        // console.log("table: ", table);
         state.clientInvStatusTable = table;
     },
     TYPEAHEADCLIENTINFO (state, names) {
