@@ -3,6 +3,7 @@ import client_pending_table from '../local_db/client_pending_table'
 import client_finish_table from '../local_db/client_finish_table'
 // import client_pending_table as a from '..../local_db/client_pending_table'
 // console.log(client_pending_table);
+
 export const clientInvStatus = ({dispatch}, client_id) => {
   Vue.http.get(`/client_inventory/${client_id}`).then(
     (res) => {
