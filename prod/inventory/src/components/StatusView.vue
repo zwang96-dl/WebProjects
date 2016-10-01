@@ -45,7 +45,7 @@ export default {
     },
     vuex: {
         getters: {
-            tableData: state => state.clientInvStatusTable
+            // tableData: state => state.clientInvStatusTable
         },
         actions: {
             clientInvStatus
@@ -53,7 +53,7 @@ export default {
     },
     methods: {
         deleteMe: function(id) {
-            alert("Delete " + id);
+            console.log("Delete " + id);
         },
         alphabetFilter: function(letter) {
             if (letter == this.selectedLetter) {
@@ -82,7 +82,7 @@ export default {
                 },
                 templates: {
                     // edit: "<a href='#!/{id}/edit'><i class='glyphicon glyphicon-edit'></i></a>",
-                    // delete: "<a href='javascript:void(0);' @click='$parent.deleteMe({id})'><i class='glyphicon glyphicon-erase'></i></a>"
+                    delete: "<a href='javascript:void(0);' @click='$parent.deleteMe({id})'><i class='glyphicon glyphicon-erase'></i></a>"
                 },
                 filterable: ['client_name', 'client_id'],
                 listColumns: {
@@ -116,28 +116,28 @@ export default {
             },
             letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
             selectedLetter: '',
-            // tableData: [{
-            //     id: "1",
-            //     name: "Sidney Brakus",
-            //     pet: randomOption(),
-            //
-            //     birth_date: randomDate(new Date(1925, 0, 1), new Date(2012, 0, 1))
-            //
-            // }, {
-            //     id: "2",
-            //     name: "Jovan Koepp",
-            //     pet: randomOption(),
-            //
-            //     birth_date: randomDate(new Date(1925, 0, 1), new Date(2012, 0, 1))
-            //
-            // }, {
-            //     id: "3",
-            //     name: "Shanie McCullough PhD",
-            //     pet: randomOption(),
-            //
-            //     birth_date: randomDate(new Date(1925, 0, 1), new Date(2012, 0, 1))
-            //
-            // }]
+            tableData: [{
+                id: "1",
+                name: "Sidney Brakus",
+                pet: randomOption(),
+            
+                birth_date: randomDate(new Date(1925, 0, 1), new Date(2012, 0, 1))
+            
+            }, {
+                id: "2",
+                name: "Jovan Koepp",
+                pet: randomOption(),
+            
+                birth_date: randomDate(new Date(1925, 0, 1), new Date(2012, 0, 1))
+            
+            }, {
+                id: "3",
+                name: "Shanie McCullough PhD",
+                pet: randomOption(),
+            
+                birth_date: randomDate(new Date(1925, 0, 1), new Date(2012, 0, 1))
+            
+            }]
         }
     }
 }
