@@ -79,71 +79,74 @@
         data() {
 
             return {
+
                 tableData: [
-    {
-        "EDTA": null,
-        "ESR": null,
-        "Plasma": null,
-        "SST": 2,
-        "Urine": null,
-        "address": null,
-        "big_box": null,
-        "client_id": 5555,
-        "client_practice_name": "Research Gastroenterology",
-        "comments": null,
-        "id": "2",
-        "operator": null,
-        "patient_kit": null,
-        "processed_by": null,
-        "processed_time": "",
-        "regular_box": null,
-        "req": null,
-        "shipping_method": null,
-        "time": ""
-    },
-    {
-        "EDTA": null,
-        "ESR": null,
-        "Plasma": null,
-        "SST": 2,
-        "Urine": null,
-        "address": null,
-        "big_box": null,
-        "client_id": 1111,
-        "client_practice_name": "Research Gastroenterology",
-        "comments": null,
-        "id": "3",
-        "operator": null,
-        "patient_kit": null,
-        "processed_by": null,
-        "processed_time": "",
-        "regular_box": null,
-        "req": null,
-        "shipping_method": null,
-        "time": ""
-    },
-    {
-        "EDTA": null,
-        "ESR": null,
-        "Plasma": null,
-        "SST": 2,
-        "Urine": null,
-        "address": null,
-        "big_box": null,
-        "client_id": 1234,
-        "client_practice_name": "Shawn Michael Field MD PhD LLC",
-        "comments": null,
-        "id": "4",
-        "operator": null,
-        "patient_kit": null,
-        "processed_by": null,
-        "processed_time": "",
-        "regular_box": null,
-        "req": null,
-        "shipping_method": null,
-        "time": ""
-    },
-    ],
+
+                    {
+                        "EDTA": null,
+                        "ESR": null,
+                        "Plasma": null,
+                        "SST": 2,
+                        "Urine": null,
+                        "address": null,
+                        "big_box": null,
+                        "client_id": 5555,
+                        "client_practice_name": "Research Gastroenterology",
+                        "comments": null,
+                        "id": "2",
+                        "operator": null,
+                        "patient_kit": null,
+                        "processed_by": null,
+                        "processed_time": "",
+                        "regular_box": null,
+                        "req": null,
+                        "shipping_method": null,
+                        "time": ""
+                    },
+                    {
+                        "EDTA": null,
+                        "ESR": null,
+                        "Plasma": null,
+                        "SST": 2,
+                        "Urine": null,
+                        "address": null,
+                        "big_box": null,
+                        "client_id": 1111,
+                        "client_practice_name": "Research Gastroenterology",
+                        "comments": null,
+                        "id": "3",
+                        "operator": null,
+                        "patient_kit": null,
+                        "processed_by": null,
+                        "processed_time": "",
+                        "regular_box": null,
+                        "req": null,
+                        "shipping_method": null,
+                        "time": ""
+                    },
+                    {
+                        "EDTA": null,
+                        "ESR": null,
+                        "Plasma": null,
+                        "SST": 2,
+                        "Urine": null,
+                        "address": null,
+                        "big_box": null,
+                        "client_id": 1234,
+                        "client_practice_name": "Shawn Michael Field MD PhD LLC",
+                        "comments": null,
+                        "id": "4",
+                        "operator": null,
+                        "patient_kit": null,
+                        "processed_by": null,
+                        "processed_time": "",
+                        "regular_box": null,
+                        "req": null,
+                        "shipping_method": null,
+                        "time": ""
+                    }
+                ],
+
                 pending_table_columns: ['client_practice_name', 'client_id', 'time', 'req', 'shipping_method', 'comments'],
                 completed_table_columns: ['client_practice_name', 'client_id', 'time', 'req', 'shipping_method', 'processed_time', 'processed_by', 'comments'],
                 pending_table_options: {
@@ -154,8 +157,7 @@
                     },
                     filterable: ['client_practice_name', 'client_id'],
                     templates: {
-                        delete: 
-                        `<label class="btn btn-primary"><input type="checkbox" @click="$parent.$parent.$parent.deleteMe({id})" autocomplete="off">Complete</label>`
+                        delete: `<label class="btn btn-primary"><input type="checkbox" @click="$parent.$parent.$parent.deleteMe({id})" autocomplete="off">Complete</label>`
                         // "<a href='javascript:void(0);' @click='$parent.$parent.$parent.deleteMe({id})'><i class='glyphicon glyphicon-erase'></i></a>"
                     }
                 },
