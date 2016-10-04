@@ -9,6 +9,8 @@ import ShippingView from './components/ShippingView.vue';
 import App from './App';
 import store from './vuex/store'
 
+
+
 /* eslint-disable no-new */
 
 Vue.use(Router);
@@ -48,7 +50,7 @@ router.map({
         },
         '/status': {
             component: StatusView,
-        },
+        }
 });
 
 router.beforeEach(() => {
