@@ -47,7 +47,8 @@
             actions: {
                 clientShippingPendingStatus,
                 clientShippingFinishStatus,
-                updatePending
+                updatePending,
+                updateShippingTable
             }
         },
 
@@ -57,17 +58,26 @@
             this.clientShippingFinishStatus();
         },
 
-        // events: {
-        //     'update-pending-orders': function() {
-        //         // this.placeOrder(this.parseOrder()).then((res) => {
-        //         //     this.showModal = false;
-        //         //     res ? this.showRight = true : this.showRightFail = true
-        //         // })
+        events: {
+            'update-pending-orders': function() {
+                // this.placeOrder(this.parseOrder()).then((res) => {
+                //     this.showModal = false;
+                //     res ? this.showRight = true : this.showRightFail = true
+                // })
 
-        //         // this.$data = this.$options.data();
-        //         this.$dispatch('update-pending-orders');
-        //     }
-        // },
+                // this.$data = this.$options.data();
+                // this.$dispatch('update-pending-orders');
+                // this.$data = this.pendingTableData.filter(el=>el.selected == 'Completed');
+                // this.$dispatch('update-pending-orders');
+                this.updateShippingTable(this.pendingTableData.filter(el=>el.selected == 'Completed'));
+                // console.log(this.pendingTableData.filter(el=>el.selected == 'Completed'));
+            this.clientShippingPendingStatus();
+            this.clientShippingFinishStatus();
+                // console.log("HAHAHAHA", this);
+                // console.log("HAHAHAHA", this.$data);
+                // console.log("HAHAHAHA", this.$options.data());
+            }
+        },
 
         methods: {
 
@@ -97,39 +107,41 @@
 
 
             submitCompletedOrders: function(){
-                console.log(this.$dispatch);
+                this.$dispatch('update-pending-orders')
+                // console.log();
 
-                console.log("this.$options.data().pendingTableData",this.pendingTableData.filter(el=>el.selected == "Completed"));
-                this.$data = this.pendingTableData.filter(el=>el.selected == "Completed");
-                this.$dispatch('update-pending-orders');
-                console.log("submitCompletedOrders");
-                this.updateShippingTable();
+                // console.log("this.$options.data().pendingTableData",this.pendingTableData.filter(el=>el.selected == "Completed"));
+                // this.$data = this.pendingTableData.filter(el=>el.selected == "Completed");
+                // this.$dispatch('update-pending-orders');
+                // console.log("submitCompletedOrders");
+                // this.updateShippingTable();
+                // console.log(this.$store);
 
-                let scope = {
-                    completedTableData: this.completedTableData,
-                    pendingTableData: this.pendingTableData
-                }; // reserve these two table data for 'forEach' scope usage
+                // let scope = {
+                //     completedTableData: this.completedTableData,
+                //     pendingTableData: this.pendingTableData
+                // }; // reserve these two table data for 'forEach' scope usage
 
-                let completedOrder = [];
-                let selected_order_ids= [];
+                // let completedOrder = [];
+                // let selected_order_ids= [];
 
-                scope.pendingTableData.forEach(function(row_data) {
-                    if (row_data.selected) {
-                        selected_order_ids.push(row_data.id);
-                        completedOrder.push(row_data);
-                    }
-                });
-                this.completedTableData = this.completedTableData.concat(completedOrder);
+                // scope.pendingTableData.forEach(function(row_data) {
+                //     if (row_data.selected) {
+                //         selected_order_ids.push(row_data.id);
+                //         completedOrder.push(row_data);
+                //     }
+                // });
+                // this.completedTableData = this.completedTableData.concat(completedOrder);
 
-                if (selected_order_ids.length > 0) {
-                    this.pendingTableData = this.pendingTableData.filter(function(ele) {
-                        return selected_order_ids.indexOf(ele.id) == -1;
-                    });
-                }
+                // if (selected_order_ids.length > 0) {
+                //     this.pendingTableData = this.pendingTableData.filter(function(ele) {
+                //         return selected_order_ids.indexOf(ele.id) == -1;
+                //     });
+                // }
 
-                if (selected_order_ids.length > 0) {
-                    console.log("completedTableData: ", this.completedTableData);
-                }
+                // if (selected_order_ids.length > 0) {
+                //     console.log("completedTableData: ", this.completedTableData);
+                // }
             }
         },
 
@@ -148,7 +160,7 @@
             return {
                 completedOrder: 0,
                 selected: window.selected,
-                pending_table_columns: ['client_practice_name', 'client_id', 'time', 'req', 'shipping_method', 'comments', 'selected'],
+                pending_table_columns: ['Select', 'client_practice_name', 'client_id', 'time', 'req', 'shipping_method', 'comments'],
                 completed_table_columns: ['client_practice_name', 'client_id', 'time', 'req', 'shipping_method', 'processed_time', 'processed_by', 'comments'],
                 pending_table_options: {
 
@@ -179,18 +191,26 @@
                         client_id: 'Client ID',
                     },
                     filterable: ['client_practice_name', 'client_id'],
-                    // templates: {
-                    //     delete: function(){
-                    //         return `<input type="checkbox" class="btn btn-default" style="width: 30px; height: 30px;" :checked="{selected}"></input>`
-                    //     }
-                    //     // $parent.$parent.$parent.selectMe({id})
-                    //     // @click="$parent.$parent.$parent.selectMe({id})"
+                    templates: {
+                        Select: function(row){
+                            // console.log(row.selected)
+                            if (row.selected == "Completed") {
+                                // console.log("haha");
+                                return `<button type="button" class="btn btn-danger">Submit</button>`
+                                // return `<input type="checkbox" class="btn btn-default" style="width: 30px; height: 30px;" :checked="{selected}"></input>`
+                            }else {
+                                return `<button type="button" class="btn btn-default">Submit</button>`
+                            }
+                            // return `<input type="checkbox" class="btn btn-default" style="width: 30px; height: 30px;" :checked="{selected}"></input>`
+                        }
+                        // $parent.$parent.$parent.selectMe({id})
+                        // @click="$parent.$parent.$parent.selectMe({id})"
                         
-                    //     // `<div v-if="$parent.$parent.$parent.tableData.find(function(el){return el.id=='3'}).selected">Now you see me</div>
-                    //     // <div v-else>Now you don't</div>`
-                    //     // `<input type="checkbox" @click="$parent.$parent.$parent.selectMe({id})" autocomplete="off">`
-                    //     // "<a href='javascript:void(0);' @click='$parent.$parent.$parent.deleteMe({id})'><i class='glyphicon glyphicon-erase'></i></a>"
-                    // },
+                        // `<div v-if="$parent.$parent.$parent.tableData.find(function(el){return el.id=='3'}).selected">Now you see me</div>
+                        // <div v-else>Now you don't</div>`
+                        // `<input type="checkbox" @click="$parent.$parent.$parent.selectMe({id})" autocomplete="off">`
+                        // "<a href='javascript:void(0);' @click='$parent.$parent.$parent.deleteMe({id})'><i class='glyphicon glyphicon-erase'></i></a>"
+                    },
                 },
                 completed_table_options: {
                     headings: {

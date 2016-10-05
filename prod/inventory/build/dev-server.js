@@ -52,6 +52,8 @@ app.use(proxyMiddleware('/client_order', {target: 'http://192.168.10.121:5000'})
 app.use(proxyMiddleware('/client-shipping-pending-table/', {target: 'http://localhost:5000'}))
 app.use(proxyMiddleware('/client-shipping-finish-table/', {target: 'http://localhost:5000'}))
 app.use(proxyMiddleware('/client-update-shipping-table/', {target: 'http://localhost:5000'}))
+// app.use(proxyMiddleware('/', {target: 'http://localhost:5000'}))
+
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())
 

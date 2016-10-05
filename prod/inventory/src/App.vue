@@ -54,14 +54,19 @@ html {
                     <li><a v-link="'/shipingpending'">Shiping Pending</a></li>
                     <li><a v-link="'/status'">Client Inventory Status</a></li>
                 </ul>
-                <form id="my_login_form" class="navbar-form navbar-right" enctype="application/json" action="" method=post>
+<!--                 <form id="my_login_form" class="navbar-form navbar-right" enctype="application/json" action="" method=post>
                     <div class="form-group">
                         <input type="text" placeholder="User Name" name="user" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <input type="password" placeholder="Password" name="password" class="form-control" required>
                     </div>
-                    <button id="login_btn" type="submit" class="btn btn-success">Sign in</button>
+                    <button id="login_btn" type="submit" class="btn btn-success">Sign in 111{{currentUser.userId}}</button>
+                </form> -->
+                <form class="navbar-form navbar-right" enctype="application/json" action="{{ url_for('logout') }}" >
+
+                    <div class="form-group active"><a href="/profile/" style="color:white;">Hi {{current_user.id}} !</a>&nbsp&nbsp&nbsp</div>
+                    <button type="submit" class="btn btn-success" onlick="clearCookies()">Sign Out</button>
                 </form>
             </div>
         </div>
@@ -80,7 +85,23 @@ html {
 <script>
 
 export default {
-    components: {}
+    components: {},
+    data: function(){
+        return {
+            currentUser: {
+                userId: ""
+            }
+        }
+    },
+    delimiters: ['${', '}'],
+    ready: function(){
+    this.currentUser = {
+        userId: "zhe"
+        // userId: window.sessionStorage.getItem('userId'),
+        // username: window.sessionStorage.getItem('user'),
+        // scope: window.sessionStorage.getItem('scope')
+    }
+},
 }
 
 </script>

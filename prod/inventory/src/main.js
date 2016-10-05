@@ -35,7 +35,9 @@ Vue.use(VueTables.client, {
 
 // register filters gloabally
 Vue.filter();
-
+// Vue.config({
+//     delimiters: ['[', ']']
+// })
 const router = new Router();
 
 router.map({

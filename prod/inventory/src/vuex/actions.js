@@ -3,6 +3,20 @@ import Vue from 'vue'
 // import client_finish_table from '../local_db/client_finish_table'
 
 
+export const userAuthentication = ({dispatch}) => {
+  // dispatch("CLIENTSHIPPINGSTATUS", client_pending_table)
+  Vue.http.get("/auth-user/").then(
+    (res) => {
+      dispatch('AUTHENTICATION', username);
+    },
+    (err) => {
+      console.log("this is a err", err);
+    }
+  )
+}
+
+
+
 export const clientInvStatus = ({dispatch}, client_id) => {
   console.log("pppp");
   Vue.http.get(`/client_inventory/${client_id}`).then(
@@ -16,14 +30,18 @@ export const clientInvStatus = ({dispatch}, client_id) => {
   );
 };
 
+
+
+
 export const updateShippingTable = ({ dispatch }, orders) => {
-  console.log("In updateShippingTable");
-    return Vue.http.post('/client-update-shipping-table/', orders).then(
+   let orders_json = JSON.stringify(orders);
+    return Vue.http.post('/client-update-shipping-table/', orders_json).then(
         (res) => {return 'success'}
     ).catch((err) => {
         console.log(err);
     })
 }
+
 
 
 export const clientShippingPendingStatus = ({dispatch}) => {

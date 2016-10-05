@@ -10,10 +10,17 @@ const state = {
     physicianNames: [],
     selectedClient: undefined,
     clientShippingPendingTable: [],
-    clientShippingFinishTable: []
+    clientShippingFinishTable: [],
+    username: null
 }
 
 const mutations = {
+
+     AUTHENTICATION (state, username) {
+        console.log(username);
+        state.username = username;
+     },
+
     UPDATESHIPPINGPENDING (state, id) {
         // console.log(id);
         let obj = state.clientShippingPendingTable.find(function(i){
