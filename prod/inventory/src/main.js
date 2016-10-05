@@ -27,9 +27,9 @@ Vue.use(VueTables.client, {
   texts: {
     filter: "Search:"
   },
-  datepickerOptions: {
-    showDropdowns: true
-  }
+  // datepickerOptions: {
+  //   showDropdowns: true
+  // }
   //skin:''
 });
 
@@ -42,7 +42,7 @@ router.map({
         '/receive': {
             component: ReceiveView,
         },
-        '/order/': {
+        '/order': {
             component: OrderView,
         },
         '/shipingpending': {

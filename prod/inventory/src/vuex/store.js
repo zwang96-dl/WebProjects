@@ -14,7 +14,16 @@ const state = {
 }
 
 const mutations = {
-    CLIENTSHIPPINGSTATUS (state, table) {
+    UPDATESHIPPINGPENDING (state, id) {
+        // console.log(id);
+        let obj = state.clientShippingPendingTable.find(function(i){
+            return i.id == id;
+        });
+        // console.log(state.clientShippingPendingTable);
+        obj.selected = (obj.selected == "Pending") ? "Completed": "Pending";
+        // obj.selected = !obj.selected;
+    },
+    CLIENTSHIPPINGPENDINGSTATUS (state, table) {
         // console.log("1state: ", state);
         // console.log("1table: ", table);
         state.clientShippingPendingTable = table;

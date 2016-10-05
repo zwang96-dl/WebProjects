@@ -45,7 +45,7 @@ export default {
     },
     vuex: {
         getters: {
-            // tableData: state => state.clientInvStatusTable
+            tableData: state => state.clientInvStatusTable
         },
         actions: {
             clientInvStatus

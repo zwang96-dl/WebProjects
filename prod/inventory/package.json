@@ -19,8 +19,7 @@
     "moment": "^2.14.1",
     "vue": "^1.0.21",
     "vue-router": "^0.7.13",
-    "vue-strap": "^1.0.11",
-    "vue-table": "0.0.1"
+    "vue-strap": "^1.0.11"
   },
   "devDependencies": {
     "babel-core": "^6.0.0",
