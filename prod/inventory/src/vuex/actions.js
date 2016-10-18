@@ -4,21 +4,28 @@ import Vue from 'vue'
 
 
 export const userAuthentication = ({dispatch}) => {
-  // dispatch("CLIENTSHIPPINGSTATUS", client_pending_table)
-  Vue.http.get("/auth-user/").then(
-    (res) => {
-      dispatch('AUTHENTICATION', username);
-    },
-    (err) => {
-      console.log("this is a err", err);
-    }
-  )
+
+  dispatch('AUTHENTICATION', 'zhe');
+
+
+  // console.log("in actions , userAuthentication: ");
+  // Vue.http.get("/auth-user/").then(
+  //   (res) => {
+  //     let username = res.data;
+  //     console.log("who am i?", `'${username}'`, username.length);
+  //     dispatch('AUTHENTICATION', username);
+  //   },
+  //   (err) => {
+  //     console.log("this is a err1", err);
+  //   }
+  // );
 }
 
 
 
 export const clientInvStatus = ({dispatch}, client_id) => {
-  console.log("pppp");
+  console.log("frontend: here");
+  console.log("client_id: ", client_id);
   Vue.http.get(`/client_inventory/${client_id}`).then(
     (res) => {
       let table = res.json();
@@ -45,7 +52,7 @@ export const updateShippingTable = ({ dispatch }, orders) => {
 
 
 export const clientShippingPendingStatus = ({dispatch}) => {
-  console.log("hahahah");
+  // console.log("hahahah");
   // dispatch("CLIENTSHIPPINGSTATUS", client_pending_table)
   Vue.http.get("/client-shipping-pending-table/").then(
     (res) => {
@@ -62,8 +69,13 @@ export const updatePending = ({dispatch}, id) => {
   dispatch('UPDATESHIPPINGPENDING', id);
 }
 
+export const cancelCompleted = ({dispatch}, id) => {
+  dispatch('CANCELCOMPLETED', id);
+}
+
+
 export const clientShippingFinishStatus = ({dispatch}) => {
-  console.log("hehehehehe");
+  // console.log("hehehehehe");
   // dispatch("CLIENTSHIPPINGFINISHSTATUS", client_finish_table)
   Vue.http.get("/client-shipping-finish-table/").then(
     (res) => {

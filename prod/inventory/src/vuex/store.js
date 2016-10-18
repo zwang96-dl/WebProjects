@@ -17,32 +17,37 @@ const state = {
 const mutations = {
 
      AUTHENTICATION (state, username) {
-        console.log(username);
         state.username = username;
      },
 
     UPDATESHIPPINGPENDING (state, id) {
-        // console.log(id);
         let obj = state.clientShippingPendingTable.find(function(i){
             return i.id == id;
         });
-        // console.log(state.clientShippingPendingTable);
         obj.selected = (obj.selected == "Pending") ? "Completed": "Pending";
-        // obj.selected = !obj.selected;
     },
+
+    CANCELCOMPLETED (state, id) {
+        let obj = state.clientShippingFinishTable.find(function(i){
+            return i.id == id;
+        });
+        obj.cancel = (obj.cancel == "Cancel") ? "Cancel": "";
+        if (obj.cancel == "") {
+            obj.cancel = "Cancel";
+        } else if (obj.cancel == "Cancel") {
+            obj.cancel = "";
+        } else {
+            return null;
+        }
+    },
+
     CLIENTSHIPPINGPENDINGSTATUS (state, table) {
-        // console.log("1state: ", state);
-        // console.log("1table: ", table);
         state.clientShippingPendingTable = table;
     },
     CLIENTSHIPPINGFINISHSTATUS (state, table) {
-        // console.log("1state: ", state);
-        // console.log("1table: ", table);
         state.clientShippingFinishTable = table;
     },
     CLIENTSTATUS (state, table) {
-        // console.log("state: ", state);
-        // console.log("table: ", table);
         state.clientInvStatusTable = table;
     },
     TYPEAHEADCLIENTINFO (state, names) {

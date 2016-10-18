@@ -10,49 +10,33 @@ import App from './App';
 import store from './vuex/store'
 
 
-
-/* eslint-disable no-new */
-
 Vue.use(Router);
 Vue.use(VueResource);
 Vue.http.options.root = '/client_inventory';
 Vue.use(VueTables.client, {
-  compileTemplates: true,
   highlightMatches: true,
-  //pagination: {
-  // dropdown:true
-  // chunk:5
-  // },
   filterByColumn: true,
   texts: {
     filter: "Search:"
   },
-  // datepickerOptions: {
-  //   showDropdowns: true
-  // }
-  //skin:''
 });
 
-// register filters gloabally
 Vue.filter();
-// Vue.config({
-//     delimiters: ['[', ']']
-// })
 const router = new Router();
 
 router.map({
-        '/receive': {
-            component: ReceiveView,
-        },
-        '/order': {
-            component: OrderView,
-        },
-        '/shipingpending': {
-            component: ShippingView
-        },
-        '/status': {
-            component: StatusView,
-        }
+  '/receive': {
+    component: ReceiveView,
+  },
+  '/order': {
+    component: OrderView,
+  },
+  '/shipingpending': {
+    component: ShippingView
+  },
+  '/status': {
+    component: StatusView,
+  }
 });
 
 router.beforeEach(() => {
